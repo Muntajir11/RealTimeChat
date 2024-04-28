@@ -3,7 +3,7 @@ import Message from '../models/message.model.js';
 
 export const sendMessage= async(req, res) => {
     
-    try {
+    try { 
 
         const {message}= req.body;
         const {id: receiverId}= req.params;
@@ -48,3 +48,26 @@ export const sendMessage= async(req, res) => {
         res.status(500).json({error:"Internal Server Error"});
     }
 };
+
+
+export const getMessages = async (req, res) => {
+
+    try {
+    const {id:userToChatId} = req.params;
+    const senderId = req.user._id;
+    
+    const conversation= await Conversation.findOne({
+
+        participants: { $all: [senderId, userToChatId]},
+    }).populate("messages");
+
+    
+     res.status(200).json(conversation.messages);
+
+
+        
+    } catch (error) {
+        console.log("Error in getMessage Controller:", error.message);
+        res.status(500).json({error:"Internal Server Error"});   
+    }
+}
