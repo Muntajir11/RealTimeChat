@@ -19,7 +19,6 @@ export const signup = async( req, res) => {
             return res.status(400).json({error:"Username already exists."});
         }
 
-        //Hash Password here
         // https://avatar-placeholder.iran.liara.run/
 
         const salt= await bcrypt.genSalt(10);
@@ -41,7 +40,7 @@ export const signup = async( req, res) => {
         {
             //Generate JWT token
 
-             generateTokenAndSetCookie(newUser._id,res);
+            generateTokenAndSetCookie(newUser._id,res);
             await newUser.save();
 
             res.status(201).json({

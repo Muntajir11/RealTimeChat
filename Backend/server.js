@@ -7,11 +7,10 @@ import messageRoutes from "./routes/messageRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
+dotenv.config();
 
 const app= express();
-const PORT =process.env.PORT || 3000;
-
-dotenv.config();
+const PORT = process.env.PORT; 
 
 app.use(express.json());
 app.use(cookieParser());
