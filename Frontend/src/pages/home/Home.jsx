@@ -1,18 +1,17 @@
 import React from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
 import MessageContainer from '../../components/messages/MessageContainer';
-import Login from '../login/Login';
-import SignUp from '../signup/SignUp';
+import Icon from '../../components/sidebar/Icon/icon';
 
 const Home = () => {
   return (
+    <div className='relative'>
+    <Icon />
     <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-
-    <Sidebar />
-    <MessageContainer />
-    {/* <Login /> */}
-    {/* <SignUp /> */}
+      <Sidebar />
+      <MessageContainer />
     </div>
+  </div>
   );
 };
 
