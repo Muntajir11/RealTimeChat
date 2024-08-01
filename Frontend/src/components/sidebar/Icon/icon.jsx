@@ -5,10 +5,10 @@ const Icon = () => {
   return (
     <div className="align">
 
-    <div class="typewriter">
-    <div class="slide"><i></i></div>
-    <div class="paper"></div>
-    <div class="keyboard"></div>
+    <div className="typewriter">
+    <div className="slide"><i></i></div>
+    <div className="paper"></div>
+    <div className="keyboard"></div>
 
     <div className="heading">
     <span>ＶｉｂｅＶｅｒｓｅ 💭</span>
