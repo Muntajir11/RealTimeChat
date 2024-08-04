@@ -1,14 +1,14 @@
-import User from '../models/user.model.js'
-import bcrypt from "bcryptjs"
+import User from '../models/user.model.js';
+import Contact from '../models/contacts.model.js';
+import bcrypt from 'bcryptjs';
 import generateTokenAndSetCookie from '../utils/generateToken.js';
 
 export const signup = async (req, res) => {
-
     try {
         const { fullName, username, password, confirmPassword, gender } = req.body;
 
         if (password !== confirmPassword) {
-            return res.status(400).json({ error: "Passwords don't match." })
+            return res.status(400).json({ error: "Passwords don't match." });
         }
 
         const user = await User.findOne({ username });
@@ -17,10 +17,7 @@ export const signup = async (req, res) => {
             return res.status(400).json({ error: "Username already exists." });
         }
 
-        // https://avatar-placeholder.iran.liara.run/
-
         const salt = await bcrypt.genSalt(10);
-
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
@@ -32,13 +29,17 @@ export const signup = async (req, res) => {
             password: hashedPassword,
             gender,
             profilePic: gender === "male" ? boyProfilePic : girlProfilePic
-        })
+        });
 
         if (newUser) {
-            //Generate JWT token
-
-            generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
+
+            // Create a contact list for the new user
+            const newContactList = new Contact({ user: newUser._id, contacts: [] });
+            await newContactList.save();
+
+            // Generate JWT token
+            generateTokenAndSetCookie(newUser._id, res);
 
             res.status(201).json({
                 _id: newUser._id,
@@ -51,24 +52,26 @@ export const signup = async (req, res) => {
         }
 
     } catch (error) {
-
         console.log("Error in SignUp controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
-
     }
-
-}
+};
 
 export const login = async (req, res) => {
-
     try {
-
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
         if (!user || !isPasswordCorrect) {
-            return res.status(400).json({ error: "Incorrect username and password." });
+            return res.status(400).json({ error: "Incorrect username or password." });
+        }
+
+        // Check if the contact list exists
+        let contactList = await Contact.findOne({ user: user._id });
+        if (!contactList) {
+            contactList = new Contact({ user: user._id, contacts: [] });
+            await contactList.save();
         }
 
         generateTokenAndSetCookie(user._id, res);
@@ -84,16 +87,14 @@ export const login = async (req, res) => {
         console.log("Error in login Controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
     }
-
-}
+};
 
 export const logout = (req, res) => {
     try {
         res.cookie("jwt", "", { maxAge: 0 });
         res.status(200).json({ message: "Logged Out Successfully" });
-
     } catch (error) {
         console.log("Error in logout controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
     }
-}
+};
