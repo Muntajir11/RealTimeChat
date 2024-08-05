@@ -31,7 +31,7 @@ export const addContact = async (req, res) => {
     }
 
     try {
-        const userToAdd = await User.findOne({ username });
+        const userToAdd = await User.findOne({ username: new RegExp('^' + username + '$', 'i') });
         if (!userToAdd) {
             return res.status(404).json({ error: "User not found" });
         }
