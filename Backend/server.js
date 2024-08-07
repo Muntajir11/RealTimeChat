@@ -6,8 +6,6 @@ import path from 'path';
 import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import conversationRoutes from './routes/conversationRoutes.js'; // Import the new route file
-
 import connectToMongoDB from './db/connectToMongoDB.js';
 import { app, server } from './socket/socket.js';
 

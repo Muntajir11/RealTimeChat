@@ -7,6 +7,7 @@ const SignUp = () => {
 	const [inputs, setInputs] = useState({
 		fullName: "",
 		username: "",
+		email: "",
 		password: "",
 		confirmPassword: "",
 		gender: "",
@@ -54,6 +55,19 @@ const handleSubmit= async(e) => {
 						   className='w-full input input-bordered h-10' 
 						   value={inputs.username}
 						   onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+						/>
+					</div>
+
+					<div>
+						<label className='label p-2'>
+							<span className='text-base text-emerald-950 label-text'>Email</span>
+						</label>
+						<input 
+						    type='text'
+							placeholder='Email'
+							className='w-full input input-bordered  h-10'
+							value={inputs.email}
+							onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 						/>
 					</div>
 
