@@ -63,7 +63,7 @@ const handleSubmit= async(e) => {
 							<span className='text-base text-emerald-950 label-text'>Email</span>
 						</label>
 						<input 
-						    type='text'
+						    type='email'
 							placeholder='Email'
 							className='w-full input input-bordered  h-10'
 							value={inputs.email}
