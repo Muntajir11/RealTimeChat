@@ -171,8 +171,8 @@ Have questions, suggestions, or feedback? Feel free to reach out to the co-creat
 ----
 
 - **Tushar**: [Email](mailto:tushar.manna@outlook.com)
-- **GitHub**: [Muntajir11](https://github.com/Tushar-Manna)
-- **LinkedIn**: [Muntajir](https://www.linkedin.com/in/tusharmanna/)
+- **GitHub**: [Tushar-Manna](https://github.com/Tushar-Manna)
+- **LinkedIn**: [tusharmanna](https://www.linkedin.com/in/tusharmanna/)
 
 
 Thank you for using **ᑕOᑎᑎEᑕT 🪢**! 🌟
