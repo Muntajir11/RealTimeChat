@@ -1,4 +1,4 @@
-## Welcome to **ᑕOᑎᑎEᑕT** — a real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
+## Welcome to **ᑕOᑎᑎEᑕT 🪢** — a real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
 
 
 ## Table of Contents
