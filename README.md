@@ -55,6 +55,52 @@ You should now see the **ᑕOᑎᑎEᑕT 🪢** application running locally.
 
 ---
 
+### Project Structure 
+
+ROOT FOLDER
+├── Backend
+│   ├── controllers         # Handles the logic for various routes
+│   ├── db                  # Database configuration and models
+│   ├── middleware          # Custom middleware functions
+│   ├── models              # Mongoose schemas and models
+│   ├── routes              # API route definitions
+│   ├── socket              # Socket.IO configuration and events
+│   ├── utils               # Utility functions
+│   └── server.js           # Entry point for the Node.js server
+│
+├── Frontend
+│   ├── public              # Static assets (images, icons, etc.)
+│   ├── src                 # Main source directory for the React app
+│   │   ├── assets          # Images, fonts, and other assets
+│   │   ├── components      # Reusable React components
+│   │   ├── context         # React Context API for state management
+│   │   ├── hooks           # Custom hooks for React
+│   │   ├── pages           # Page components for routing
+│   │   ├── utils           # Utility functions for frontend
+│   │   └── zustand         # Zustand store for global state management
+│   ├── App.css             # Global styles for the React app
+│   ├── App.jsx             # Main application component
+│   ├── index.css           # Global CSS file
+│   └── main.jsx            # Entry point for the React application
+│
+├── .eslintrc.cjs           # ESLint configuration
+├── .gitignore              # Git ignore file
+├── index.html              # Main HTML file for the React app
+├── package.json            # Dependencies and scripts for the frontend
+├── package-lock.json       # Locked versions of dependencies
+└── README.md               # Project documentation
+
+### Explanation
+
+- **Backend**: Contains all server-side code, including controllers, database configurations, middleware, models, routes, socket configuration, and utilities.
+- **Frontend**: Contains the front-end code organized into assets, components, context, hooks, pages, utilities, and Zustand store.
+- **Root Files**:
+  - `.eslintrc.cjs`: ESLint configuration for consistent code quality.
+  - `.gitignore`: Specifies files and directories to be ignored by Git.
+  - `index.html`: The HTML template for the React app.
+  - `package.json` & `package-lock.json`: Manage project dependencies and scripts.
+
+
 ## 🎮 **Usage**
 
 Once everything is set up:
