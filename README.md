@@ -92,7 +92,7 @@ Once the servers are running, open your browser and navigate to `http://localhos
 - **Backend**: Node.js, Express, MongoDB, Mongoose
 - **Real-time Communication**: Socket.IO
 - **Authentication**: JWT, bcrypt
-- **Deployment**: (Specify if you've deployed it on platforms like Heroku, Netlify, etc.)
+- **Deployment**: Render
 
 ## Contributing
 
