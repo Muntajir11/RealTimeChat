@@ -162,11 +162,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 **Contact**
 
-Have questions, suggestions, or feedback? Feel free to reach out:
-
-- **Muntajir**: [Email](mailto:Muntajirwork11@gmail.com)
+Have questions, suggestions, or feedback? Feel free to reach out to the co-creators:
+----
+- **Muntajir**: [Muntajirwork11@gmail.com](mailto:Muntajirwork11@gmail.com)
 - **GitHub**: [Muntajir11](https://github.com/Muntajir11)
 - **LinkedIn**: [Muntajir](https://www.linkedin.com/in/munta-jir-30737a230/)
-
-
+----
+- **Tushar**: [Tushar.Manna@outlook.com](mailto:Tushar.Manna@outlook.com)
+- **GitHub**: [Tushar-Manna](https://github.com/Tushar-Manna)
+- **LinkedIn**: [tusharmanna](https://www.linkedin.com/in/tusharmanna/)
+----
 Thank you for using **ᑕOᑎᑎEᑕT 🪢**! 🌟
