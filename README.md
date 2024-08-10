@@ -1,9 +1,8 @@
 # RealTimeChat App
 
-Welcome to **CONNECT** — a real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
+Welcome to **![image](https://github.com/user-attachments/assets/6fde64b3-83a8-4463-b19e-a3413377e447)
+** — a real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
 
-![RealTimeChat Banner](![image](https://github.com/user-attachments/assets/558ed542-df41-4816-aa7f-d359c65b217a)
-) <!-- Optional: Add a banner image or a screenshot of your app -->
 
 ## Table of Contents
 
