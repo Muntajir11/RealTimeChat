@@ -56,8 +56,8 @@ You should now see the **ᑕOᑎᑎEᑕT 🪢** application running locally.
 ---
 
 ### Project Structure 
-
-ROOT FOLDER
+ ```
+CONNECT
 ├── Backend
 │   ├── controllers         # Handles the logic for various routes
 │   ├── db                  # Database configuration and models
@@ -89,6 +89,7 @@ ROOT FOLDER
 ├── package.json            # Dependencies and scripts for the frontend
 ├── package-lock.json       # Locked versions of dependencies
 └── README.md               # Project documentation
+ ```
 
 ### Explanation
 
