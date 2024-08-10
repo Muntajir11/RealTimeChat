@@ -22,7 +22,7 @@ Get a local copy of CONNECT up and running with these simple steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Muntajir11/CONNECT.git
+   git clone https://github.com/Muntajir11/RealTimeChat.git
    cd CONNECT
    ```
 
