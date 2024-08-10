@@ -113,6 +113,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 If you have any questions, suggestions, or feedback, feel free to reach out:
 
-- **Muntajir**: [Your Email](mailto:Muntajirwork11@gmail.com)
-- **GitHub**: [Your GitHub Profile](https://github.com/Muntajir11)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/munta-jir-30737a230/)
+- **Muntajir**: [Email](mailto:Muntajirwork11@gmail.com)
+- **GitHub**: [GitHub Profile](https://github.com/Muntajir11)
+- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/munta-jir-30737a230/)
