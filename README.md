@@ -2,7 +2,6 @@
 
 
 ## Table of Contents
-
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -19,10 +18,6 @@
 - **Responsive Design**: Fully responsive layout, optimized for both desktop and mobile devices.
 - **Search Functionality**: Quickly find and start conversations with your contacts.
 - **Sidebar Navigation**: Manage your conversations and contacts from the intuitive sidebar.
-- **Notifications**: Receive notifications for new messages.
-
-Here's the revised installation section for your README:
-
 
 ## Installation
 1. **Clone the repository:**
@@ -30,7 +25,7 @@ Here's the revised installation section for your README:
    git clone https://github.com/your-username/CONNECT.git
    cd CONNECT
    ```
-   
+ 
 2. **Install dependencies:**
    In the project directory, run:
    ```bash
@@ -48,14 +43,17 @@ Here's the revised installation section for your README:
 5. **Start the development server:**
    Run the following command to start the server:
    ```bash
-   npm run dev
+   npm run server // In the Root folder
+   npm run dev    // In the Frontend folder
    ```
+   
 6. **Access the application:**
    Open your browser and navigate to:
    ```
    http://localhost:3000
    ```
-   You should now see the CONNECT application running locally.
+   
+   You should now see the **ᑕOᑎᑎEᑕT 🪢** application running locally.
 
 
 
