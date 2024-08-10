@@ -1,4 +1,4 @@
-## Welcome to **ᑕOᑎᑎEᑕT 🪢** — a real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
+## Welcome to **ᑕOᑎᑎEᑕT 🪢**: A real-time messaging application designed for seamless and instant communication. This app is built using the MERN stack (MongoDB, Express, React, Node.js) and leverages Socket.IO for real-time chat functionality.
 
 
 ## Table of Contents
@@ -13,7 +13,6 @@
 - [Contact](#contact)
 
 ## Features
-
 - **Real-time Messaging**: Chat instantly with your contacts with real-time message updates.
 - **User Authentication**: Secure sign-up and login with JWT-based authentication.
 - **Add Contacts**: Easily add contacts to your chat list.
@@ -22,14 +21,43 @@
 - **Sidebar Navigation**: Manage your conversations and contacts from the intuitive sidebar.
 - **Notifications**: Receive notifications for new messages.
 
+Here's the revised installation section for your README:
+
+
 ## Installation
-
-To get a local copy up and running, follow these steps:
-
 1. **Clone the repository:**
-
    ```bash
-   git clone https://github.com/your-username/RealTimeChat.git
+   git clone https://github.com/your-username/CONNECT.git
+   cd CONNECT
+   ```
+   
+2. **Install dependencies:**
+   In the project directory, run:
+   ```bash
+   npm install
+   ```
+   
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory and add the following environment variables:
+   ```bash
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
+   Replace `your_mongodb_connection_string` with your MongoDB connection string and `your_jwt_secret` with a secure secret for JWT.
+   
+5. **Start the development server:**
+   Run the following command to start the server:
+   ```bash
+   npm run dev
+   ```
+6. **Access the application:**
+   Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+   You should now see the CONNECT application running locally.
+
+
 
 
 
