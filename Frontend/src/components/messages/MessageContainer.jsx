@@ -5,7 +5,7 @@ import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext";
 
-const MessageContainer = () => {
+const MessageContainer = ({ onBack }) => {  // Accept the onBack prop
     const { selectedConversation, setSelectedConversation } = useConversation();
     
     return (
@@ -17,7 +17,17 @@ const MessageContainer = () => {
                  <NoChatSelected />
             ) : (
                 <div className='flex flex-col h-full'>
-                    <div className='bg-slate-500 px-4 py-2 flex-shrink-0 rounded-none' >
+                    {/* Back button for mobile */}
+                    <div className='p-2'>
+                        <button 
+                            className='text-blue-500 hover:underline'
+                            onClick={onBack}  // Trigger the onBack prop to show Sidebar
+                        >
+                            Back
+                        </button>
+                    </div>
+                    
+                    <div className='bg-slate-500 px-4 py-2 flex-shrink-0 rounded-none'>
                         <span className='label-text'>To:</span>{" "}
                         <span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
                     </div>
@@ -26,7 +36,7 @@ const MessageContainer = () => {
                         <Messages />
                     </div>
                 
-                    <div className='flex-shrink-0' >
+                    <div className='flex-shrink-0'>
                         <MessageInput />
                     </div>
                 </div>

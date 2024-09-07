@@ -57,3 +57,23 @@ body {
 		transform: translate3d(4px, 0, 0);
 	}
 }
+
+@media (max-width: 768px) {
+	.sidebar {
+	  display: none; /* Hide sidebar on small screens */
+	}
+  
+	.message-container {
+	  display: block; /* Show message container on small screens */
+	}
+  }
+  
+  @media (min-width: 769px) {
+	.sidebar {
+	  display: block; /* Show sidebar on larger screens */
+	}
+  
+	.message-container {
+	  display: block; /* Hide message container on larger screens */
+	}
+  }
