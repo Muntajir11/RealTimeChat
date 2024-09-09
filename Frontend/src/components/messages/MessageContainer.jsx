@@ -16,7 +16,7 @@ const MessageContainer = ({ onBack }) => {  // Accept the onBack prop
             {!selectedConversation ? (
                  <NoChatSelected />
             ) : (
-                <div className='flex flex-col h-full'>
+                <div className='flex flex-col h-dvh'>
                     {/* Back button for mobile */}
                     <div className='p-2'>
                         <button 
