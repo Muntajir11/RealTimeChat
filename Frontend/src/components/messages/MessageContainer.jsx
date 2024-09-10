@@ -16,12 +16,11 @@ const MessageContainer = ({ onBack }) => {  // Accept the onBack prop
             {!selectedConversation ? (
                  <NoChatSelected />
             ) : (
-                <div className='flex flex-col h-full'>
-                    {/* Back button for mobile */}
+                <div className='flex flex-col h-dvh'>
                     <div className='p-2'>
                         <button 
-                            className='text-blue-500 hover:underline'
-                            onClick={onBack}  // Trigger the onBack prop to show Sidebar
+                            className='text-blue-500'
+                            onClick={onBack}  
                         >
                             Back
                         </button>
