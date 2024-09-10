@@ -5,36 +5,35 @@ import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext";
 
-const MessageContainer = ({ onBack }) => {  // Accept the onBack prop
+const MessageContainer = ({ onBack }) => {
     const { selectedConversation, setSelectedConversation } = useConversation();
-    
+
     return (
-        <div
-            className={`flex flex-col flex-1`}
-            style={{ height: '100vh' }}
-        >
+        <div className='flex flex-col flex-1' style={{ height: '100vh' }}>
             {!selectedConversation ? (
-                 <NoChatSelected />
+                <NoChatSelected />
             ) : (
                 <div className='flex flex-col h-dvh'>
-                    <div className='p-2'>
+                    {/* Header with back button and recipient's name */}
+                    <div className='bg-slate-500 px-4 py-2 flex-shrink-0 flex items-center'>
+                        {/* Back Button */}
                         <button 
-                            className='text-blue-500'
-                            onClick={onBack}  
+                            className='text-blue-500 p-2'
+                            onClick={onBack}
                         >
-                            Back
+                            Go Back
                         </button>
+                        {/* Recipient's Name */}
+                        <div className='ml-2'>
+                            <span className='label-text'> Chatting with:</span>{" "}
+                            <span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+                        </div>
                     </div>
-                    
-                    <div className='bg-slate-500 px-4 py-2 flex-shrink-0 rounded-none'>
-                        <span className='label-text'>To:</span>{" "}
-                        <span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
-                    </div>
-                    
+
+                    {/* Messages and Input */}
                     <div className='flex-1 overflow-auto'>
                         <Messages />
                     </div>
-                
                     <div className='flex-shrink-0'>
                         <MessageInput />
                     </div>
