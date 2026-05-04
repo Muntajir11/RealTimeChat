@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { fetchSidebarUsers } from "../api/usersApi.js";
 
 const useGetConversations = () => {
-    const [loading, setLoading] = useState(false);
-    const [conversations, setConversations] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [conversations, setConversations] = useState([]);
 
-    useEffect(() => {
-        const getConversations = async () => {
-            setLoading(true);
-            try {
-                // Fetch contacts for the logged-in user
-                const res = await fetch("/api/users");
-                const data = await res.json();
+	useEffect(() => {
+		const getConversations = async () => {
+			setLoading(true);
+			try {
+				const { ok, data } = await fetchSidebarUsers();
+				if (!ok || data.error) {
+					throw new Error(data.error || "Request failed");
+				}
+				setConversations(data);
+			} catch (error) {
+				toast.error(error.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-                setConversations(data);
-            } catch (error) {
-                toast.error(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+		getConversations();
+	}, []);
 
-        getConversations();
-    }, []);
-
-    return { loading, conversations };
+	return { loading, conversations };
 };
 
 export default useGetConversations;

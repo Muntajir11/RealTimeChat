@@ -1,22 +1,24 @@
 import { useState } from "react";
 import { BsSend } from "react-icons/bs";
-import { GrEmoji } from "react-icons/gr"; // Emoji icon
+import { GrEmoji } from "react-icons/gr";
 import useSendMessage from "../../hooks/useSendMessage";
-import EmojiPicker from "emoji-picker-react"; // Import EmojiPicker
+import { useTypingEmitter } from "../../hooks/useTypingEmitter.js";
+import EmojiPicker from "emoji-picker-react";
 
 const MessageInput = () => {
 	const [message, setMessage] = useState("");
 	const { loading, sendMessage } = useSendMessage();
 	const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+	const { notifyTyping, emitStop } = useTypingEmitter();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!message) return;
+		emitStop();
 		await sendMessage(message);
 		setMessage("");
 	};
 
-	// Updated handleEmojiClick function
 	const handleEmojiClick = (emojiData) => {
 		setMessage((prevMessage) => prevMessage + emojiData.emoji);
 	};
@@ -25,7 +27,6 @@ const MessageInput = () => {
 		<div className='relative'>
 			<form className='px-4 my-3' onSubmit={handleSubmit}>
 				<div className='w-full relative flex items-center'>
-					{/* Emoji Icon */}
 					<button
 						type='button'
 						className='text-white me-2'
@@ -34,7 +35,6 @@ const MessageInput = () => {
 						<GrEmoji />
 					</button>
 
-					{/* Emoji Picker */}
 					{showEmojiPicker && (
 						<div className='absolute bottom-10 left-0'>
 							<EmojiPicker onEmojiClick={handleEmojiClick} />
@@ -46,7 +46,10 @@ const MessageInput = () => {
 						className='border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white'
 						placeholder='Send a message'
 						value={message}
-						onChange={(e) => setMessage(e.target.value)}
+						onChange={(e) => {
+							setMessage(e.target.value);
+							if (e.target.value.length > 0) notifyTyping();
+						}}
 					/>
 
 					<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>

@@ -6,7 +6,11 @@
   "scripts": {
     "server": "nodemon Backend/server.js",
     "start": "node Backend/server.js",
-    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
+    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "seed": "node Backend/scripts/seedUsers.js",
+    "db:indexes": "node Backend/scripts/createIndexes.js"
   },
   "type": "module",
   "keywords": [],
@@ -20,9 +24,18 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.2",
-    "socket.io": "^4.7.5"
+    "socket.io": "^4.7.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@vitejs/plugin-react": "^4.3.4",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "jsdom": "^25.0.1",
+    "mongodb-memory-server": "^10.1.4",
+    "msw": "^2.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0",
+    "vitest": "^2.1.6"
   }
 }

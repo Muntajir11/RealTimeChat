@@ -3,80 +3,70 @@ import { IoSearchSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import useConversation from "../../zustand/useConversation";
 import useGetConversations from "../../hooks/useGetConversations";
+import { addContactRequest } from "../../api/usersApi.js";
+import { fetchConversations } from "../../api/conversationsApi.js";
 
 const SearchInput = ({ onContactAdded }) => {
-    const [search, setSearch] = useState("");
-    const { setSelectedConversation } = useConversation();
-    const { conversations } = useGetConversations();
+	const [search, setSearch] = useState("");
+	const { setSelectedConversation } = useConversation();
+	const { conversations } = useGetConversations();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!search) return;
-        if (search.length < 3) {
-            return toast.error("Search term must be at least 3 characters long");
-        }
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!search) return;
+		if (search.length < 3) {
+			return toast.error("Search term must be at least 3 characters long");
+		}
 
-        // Check if the user is already a contact
-        const existingConversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
+		const existingConversation = conversations.find((c) =>
+			c.fullName.toLowerCase().includes(search.toLowerCase()),
+		);
 
-        if (existingConversation) {
-            setSelectedConversation(existingConversation); // Set the selected conversation
-            setSearch(""); // Clear the search input
-            return; // Exit early if user is already a contact
-        }
+		if (existingConversation) {
+			setSelectedConversation(existingConversation);
+			setSearch("");
+			return;
+		}
 
-        // User is not already a contact, proceed with adding the contact
-        
-            const response = await fetch("/api/users/add-contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username: search }),
-            });
+		const { ok, data } = await addContactRequest(search);
 
-            const data = await response.json();
+		if (ok) {
+			toast.success(data.message || "Contact added successfully!");
 
-            if (response.ok) {
-                toast.success(data.message || "Contact added successfully!");
+			const convResult = await fetchConversations();
+			if (convResult.ok && Array.isArray(convResult.data)) {
+				const newConversation = convResult.data.find(
+					(c) => c.username.toLowerCase() === search.toLowerCase(),
+				);
 
-                // Fetch updated list of conversations
-                const convResponse = await fetch("/api/users/conversations"); // Adjust endpoint if needed
-                const conversationsData = await convResponse.json();
+				if (newConversation) {
+					setSelectedConversation(newConversation);
+				}
 
-                if (convResponse.ok) {
-                    // Find the newly added contact
-                    const newConversation = conversationsData.find((c) => c.fullName.toLowerCase() === search.toLowerCase());
+				setSearch("");
+				if (onContactAdded) onContactAdded();
+			} else {
+				toast.error(convResult.data?.error || "Failed to fetch updated conversations");
+			}
+		} else {
+			toast.error(data.error || "Failed to add contact");
+		}
+	};
 
-                    if (newConversation) {
-                        setSelectedConversation(newConversation); // Set the selected conversation
-                    }
-
-                    setSearch(""); // Clear the search input
-                    if (onContactAdded) onContactAdded(); // Notify parent component
-                } else {
-                    toast.error(data.error || "Failed to fetch updated conversations");
-                }
-            } else {
-                toast.error(data.error || "Failed to add contact");
-         }
-       
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className='flex items-center gap-2'>
-            <input
-                type='text'
-                placeholder='Search by username…'
-                className='input input-bordered rounded-full'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-            <button type='submit' className='btn btn-circle bg-sky-500 text-white'>
-                <IoSearchSharp className='w-6 h-6 outline-none' />
-            </button>
-        </form>
-    );
+	return (
+		<form onSubmit={handleSubmit} className='flex items-center gap-2'>
+			<input
+				type='text'
+				placeholder='Search by username…'
+				className='input input-bordered rounded-full'
+				value={search}
+				onChange={(e) => setSearch(e.target.value)}
+			/>
+			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
+				<IoSearchSharp className='w-6 h-6 outline-none' />
+			</button>
+		</form>
+	);
 };
 
 export default SearchInput;

@@ -9,6 +9,15 @@ export default defineConfig({
 		proxy: {
 			"/api": {
 				target: "http://localhost:5000",
+				changeOrigin: true,
+				cookieDomainRewrite: "localhost",
+				configure(proxy) {
+					proxy.on("proxyReq", (proxyReq) => {
+						if (!proxyReq.getHeader("origin")) {
+							proxyReq.setHeader("origin", "http://localhost:3000");
+						}
+					});
+				},
 			},
 		},
 	},

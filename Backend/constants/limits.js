@@ -1,0 +1,3 @@
+export const MAX_MESSAGE_LENGTH = 4000;
+export const MAX_PROFILE_FULLNAME_LENGTH = 120;
+export const MIN_USERNAME_LENGTH = 1;

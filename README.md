@@ -2,8 +2,6 @@
 
 Welcome to **ᑕOᑎᑎEᑕT 🪢** - A real-time messaging application designed for seamless and instant communication. Built with the MERN stack (MongoDB, Express, React, Node.js) and Socket.IO for real-time chat functionality, **ᑕOᑎᑎEᑕT 🪢** ensures your conversations are swift and secure.
 
----
- **Live Demo**: [ᑕOᑎᑎEᑕT 🪢](https://chatify-f36x.onrender.com)
  
 ## 🚀 **Features**
 

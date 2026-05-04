@@ -1,78 +1,19 @@
-import Conversation from "../models/conversation.model.js";
-import Message from "../models/message.model.js";
-import Contact from "../models/contacts.model.js"; // Import Contact model
-import { getReceiverSocketId, io } from "../socket/socket.js";
+import asyncHandler from "../middleware/asyncHandler.js";
+import * as messageService from "../services/messageService.js";
 
-export const sendMessage = async (req, res) => {
-    try {
-        const { message } = req.body;
-        const { id: receiverId } = req.params;
-        const senderId = req.user._id;
+export const sendMessage = asyncHandler(async (req, res) => {
+	const { id: receiverId } = req.params;
+	const { message } = req.validatedBody;
+	const newMessage = await messageService.sendMessageForUser({
+		senderId: req.user._id,
+		receiverId,
+		text: message,
+	});
+	res.status(201).json(newMessage);
+});
 
-        let conversation = await Conversation.findOne({
-            participants: { $all: [senderId, receiverId] },
-        });
-
-        if (!conversation) {
-            conversation = await Conversation.create({
-                participants: [senderId, receiverId],
-            });
-        }
-
-        const newMessage = new Message({
-            senderId,
-            receiverId,
-            message,
-        });
-
-        if (newMessage) {
-            conversation.messages.push(newMessage._id);
-        }
-
-        await Promise.all([conversation.save(), newMessage.save()]);
-
-        // Update sender's contact list
-        let senderContacts = await Contact.findOne({ user: senderId });
-        if (!senderContacts.contacts.includes(receiverId)) {
-            senderContacts.contacts.push(receiverId);
-            await senderContacts.save();
-        }
-
-        // Update receiver's contact list
-        let receiverContacts = await Contact.findOne({ user: receiverId });
-        if (!receiverContacts.contacts.includes(senderId)) {
-            receiverContacts.contacts.push(senderId);
-            await receiverContacts.save();
-        }
-
-        const receiverSocketId = getReceiverSocketId(receiverId);
-        if (receiverSocketId) {
-            io.to(receiverSocketId).emit("newMessage", newMessage);
-        }
-
-        res.status(201).json(newMessage);
-    } catch (error) {
-        console.log("Error in sendMessage controller: ", error.message);
-        res.status(500).json({ error: "Internal server error" });
-    }
-};
-
-export const getMessages = async (req, res) => {
-    try {
-        const { id: userToChatId } = req.params;
-        const senderId = req.user._id;
-
-        const conversation = await Conversation.findOne({
-            participants: { $all: [senderId, userToChatId] },
-        }).populate("messages");
-
-        if (!conversation) return res.status(200).json([]);
-
-        const messages = conversation.messages;
-
-        res.status(200).json(messages);
-    } catch (error) {
-        console.log("Error in getMessages controller: ", error.message);
-        res.status(500).json({ error: "Internal server error" });
-    }
-};
+export const getMessages = asyncHandler(async (req, res) => {
+	const { id: userToChatId } = req.params;
+	const messages = await messageService.getMessagesForConversation(req.user._id, userToChatId);
+	res.status(200).json(messages);
+});
