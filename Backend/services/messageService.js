@@ -6,6 +6,7 @@ import { SOCKET_EVENT_NEW_MESSAGE } from "../constants/socketEvents.js";
 import { MAX_MESSAGE_LENGTH } from "../constants/limits.js";
 import { HttpError } from "../errors/HttpError.js";
 import { stripControlChars } from "../filters/plainTextMessage.js";
+import { assertMessagingAllowed } from "../domain/blocking/blockPolicy.js";
 
 async function ensureContactDoc(userId) {
 	let doc = await Contact.findOne({ user: userId });
@@ -16,6 +17,7 @@ async function ensureContactDoc(userId) {
 }
 
 export async function sendMessageForUser({ senderId, receiverId, text }) {
+	await assertMessagingAllowed(senderId, receiverId);
 	const cleaned = stripControlChars(text).trim();
 	if (!cleaned) {
 		throw new HttpError(400, "Message is empty");
@@ -64,6 +66,7 @@ export async function sendMessageForUser({ senderId, receiverId, text }) {
 }
 
 export async function getMessagesForConversation(senderId, userToChatId) {
+	await assertMessagingAllowed(senderId, userToChatId);
 	const conversation = await Conversation.findOne({
 		participants: { $all: [senderId, userToChatId] },
 	}).populate("messages");

@@ -2,6 +2,9 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/home/Home";
 import SettingsPage from "./features/settings/SettingsPage.jsx";
+import BlockCenter from "./features/blocks/BlockCenter.jsx";
+import ReportCenter from "./features/moderation/ReportCenter.jsx";
+import ConversationSearch from "./features/search/ConversationSearch.jsx";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { Toaster } from "react-hot-toast";
@@ -14,6 +17,9 @@ function App() {
 			<Routes>
 				<Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
 				<Route path='/settings' element={authUser ? <SettingsPage /> : <Navigate to={"/login"} />} />
+				<Route path='/safety/blocks' element={authUser ? <BlockCenter /> : <Navigate to={"/login"} />} />
+				<Route path='/safety/reports' element={authUser ? <ReportCenter /> : <Navigate to={"/login"} />} />
+				<Route path='/search/thread' element={authUser ? <ConversationSearch /> : <Navigate to={"/login"} />} />
 				<Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />
 				<Route path='/signup' element={authUser ? <Navigate to='/' /> : <SignUp />} />
 			</Routes>

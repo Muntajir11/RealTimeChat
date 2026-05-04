@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import { HttpError } from "../errors/HttpError.js";
+import { assertContactInviteAllowed } from "../domain/blocking/blockPolicy.js";
 
 function escapeRegex(s) {
 	return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -35,6 +36,8 @@ export async function addContactByUsername(loggedInUserId, username) {
 	if (userToAdd.contacts.includes(loggedInUser._id)) {
 		throw new HttpError(400, "User is already a contact");
 	}
+
+	await assertContactInviteAllowed(loggedInUser._id, userToAdd._id);
 
 	loggedInUser.contacts.push(userToAdd._id);
 	userToAdd.contacts.push(loggedInUser._id);
