@@ -16,12 +16,21 @@ Alice already has Bob as a contact.
 
 ## Requirements
 
-- Node.js 20
+- Node.js **20** (this app is not built for Node 24)
 - npm (one lockfile at the repository root)
+
+Use the Linux Node from nvm. Windows Node (`v24` from `C:\Program Files\nodejs`) will fail inside WSL.
 
 ## Setup
 
 ```bash
+source ~/.nvm/nvm.sh
+nvm install 20
+nvm use
+which node   # should be ~/.nvm/versions/node/v20...
+which npm    # should be ~/.nvm/versions/node/v20...
+
+rm -rf node_modules
 npm install
 npm test
 npm run dev
