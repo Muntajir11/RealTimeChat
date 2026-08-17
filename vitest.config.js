@@ -9,22 +9,14 @@ export default defineConfig({
 	plugins: [react()],
 	test: {
 		globals: true,
-		setupFiles: [path.join(rootDir, "Frontend/src/test/setup.js")],
-		include: ["Backend/**/__tests__/**/*.test.js", "Frontend/src/**/*.test.jsx", "Frontend/src/**/*.test.js"],
-		environmentMatchGlobs: [
-			["Backend/**", "node"],
-			["Frontend/**", "jsdom"],
-		],
-		fileParallelism: false,
-		poolOptions: {
-			threads: {
-				singleThread: true,
-			},
-		},
+		environment: "jsdom",
+		setupFiles: [path.join(rootDir, "src/test/setup.js")],
+		include: ["src/**/*.test.{js,jsx}"],
+		restoreMocks: true,
 	},
 	resolve: {
 		alias: {
-			"@": path.join(rootDir, "Frontend/src"),
+			"@": path.join(rootDir, "src"),
 		},
 	},
 });
